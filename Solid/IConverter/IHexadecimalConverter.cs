@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Solid.IConverter
 {
-    interface IHexadecimalConverter
+    internal interface IHexadecimalConverter
     {
+        string HexadecimalToText(string text);
+
+        string TextToHexadecimal(string text);
     }
 }

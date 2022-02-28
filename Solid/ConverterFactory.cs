@@ -17,9 +17,9 @@ namespace Solid
                 Type.GetType($"Solid.Converters.{baseType}Converter"),
                 new object[] { decimalNumber });
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return new InvalidBaseConverter(0);
+                return new InvalidBaseConverter(decimalNumber);
             }
 
             //if (baseType == BaseType.Binary)

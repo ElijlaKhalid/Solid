@@ -14,21 +14,31 @@ namespace Solid
     internal class NumberConverter
     {
         public int DecimalNumber { get; set; }
+        public ILogger Logger { get; set; }
+        public IReader Reader { get; set; }
+        public ILogger Writer { get; set; }
+
+        public NumberConverter(ILogger logger, IReader reader, ILogger writer)
+        {
+            Logger = logger;
+            Reader = reader;
+            Writer = writer;
+        }
 
         public void Convert()
         {
-            Logger.GetLogger().Log("Program is starting...");
-            Logger.GetLogger().Log("Enter the number to convert:");
+            Logger.Log("Program is starting...");
+            Logger.Log("Enter the number to convert:");
             DecimalNumber = Reader.ReadInteger();
-            Logger.GetLogger().Log("Enter the base type (Ex: 2,8,16):");
-
+            Logger.Log("Enter the base type (Ex: 2,8,16):");
             var baseType = (BaseType)Reader.ReadInteger();
+            Writer.Log($"Number to be Converted {DecimalNumber} with base type {baseType}");
             string result;
             var type = ConverterFactory.Create(baseType, DecimalNumber);
-
             result = type.Convert();
-            Logger.GetLogger().Log(result);
-            Logger.GetLogger().Log("Program is ending..");
+            Logger.Log(result);
+            Writer.Log(result);
+            Logger.Log("Program is ending..");
         }
     }
 }

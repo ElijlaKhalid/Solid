@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Solid.IConverter
 {
-    interface IBinaryConverter
+    public interface IBinaryConverter
     {
+        string BinaryToText(string binary);
+
+        string TextToBinary(string text);
     }
 }

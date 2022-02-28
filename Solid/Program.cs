@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Solid.reqclass;
+using System;
 
 namespace Solid
 {
@@ -6,7 +7,8 @@ namespace Solid
     {
         private static void Main(string[] args)
         {
-            NumberConverter numberConverter = new NumberConverter();
+            Logger ConsoleLogger = new();
+            NumberConverter numberConverter = new NumberConverter(logger: ConsoleLogger, reader: new Reader(ConsoleLogger), writer: new TextFileLogger());
             numberConverter.Convert();
         }
     }

@@ -1,0 +1,9 @@
+Program is starting...
+Enter the number to convert:
+Program is starting...
+Enter the number to convert:
+Program is starting...
+Enter the number to convert:
+Enter the base type (Ex: 2,8,16):
+The result is: 10
+Program is ending..

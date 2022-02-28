@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Solid.IConverter;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Solid.Converters
 {
-    public class BinaryConverter : Converter, IConverter
+    public class BinaryConverter : Converter, IBinaryConverter
     {
         public BinaryConverter(int decimalNumber) : base(decimalNumber)
         {
@@ -22,24 +23,19 @@ namespace Solid.Converters
             binary = binary.Replace(" ", "");
             var list = new List<Byte>();
 
-            foreach (var item in list)
+            for (int i = 0; i < binary.Length; i += 8)
             {
+                string t = binary.Substring(i, 8);
+                list.Add(System.Convert.ToByte(t, 2));
             }
-        }
-
-        public string HexadecimalToText(string text)
-        {
-            throw new NotImplementedException();
+            var result = list.ToArray();
+            return Encoding.ASCII.GetString(result);
         }
 
         public string TextToBinary(string text)
         {
-            throw new NotImplementedException();
-        }
-
-        public string TextToHexadecimal(string text)
-        {
-            throw new NotImplementedException();
+            var bytes = Encoding.ASCII.GetBytes(text);
+            return string.Join(" ", bytes.Select(byt => System.Convert.ToString(byt, 2).PadLeft(8, '0')));
         }
     }
 }

@@ -1,0 +1,4 @@
+Number to be Converted 2 with base type Binary
+The result is: 10
+Number to be Converted 99 with base type Octal
+The result is: 143

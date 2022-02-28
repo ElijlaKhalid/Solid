@@ -6,11 +6,27 @@ using System.Threading.Tasks;
 
 namespace Solid.reqclass
 {
-    internal class Reader
+    public class Reader : IReader
     {
-        public static int ReadInteger()
+        public ILogger Logger { get; set; }
+
+        public Reader(ILogger logger)
         {
-            return int.Parse(Console.ReadLine());
+            Logger = logger;
+        }
+
+        public int ReadInteger()
+        {
+            try
+            {
+                string value = Console.ReadLine();
+                return int.Parse(value);
+            }
+            catch (Exception)
+            {
+                Logger.Log("The entered value is invalid.");
+                return 0;
+            }
         }
     }
 }
